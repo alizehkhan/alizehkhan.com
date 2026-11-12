@@ -138,12 +138,11 @@ main li {
 	text-wrap: pretty;
 }
 
-/* Anchored to the bottom and shorter than the line box, so it never covers descenders on the line above. */
+/* A solid marker block that reaches a little above and below the text. */
 .marker-word {
-	background: linear-gradient(var(--color-highlight), var(--color-highlight)) 0
-		100% / 100% 82% no-repeat;
+	background-color: var(--color-highlight);
 	color: var(--color-neutral-100);
-	padding: 0 0.12em;
+	padding: 0.14em 0.2em;
 	-webkit-box-decoration-break: clone;
 	box-decoration-break: clone;
 }
@@ -285,11 +284,7 @@ a:focus-visible .highlight {
 	}
 }
 
-/* Photos are plain; the line illustrations are dark strokes, so invert them for the dark page. */
-main img:not([src$='.svg']) {
-	border-radius: 0.25rem;
-}
-
+/* The line illustrations are dark strokes, so invert them for the dark page. */
 img[src$='.svg'] {
 	filter: invert(1);
 	opacity: 0.8;
