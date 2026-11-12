@@ -33,7 +33,7 @@ export const Home = () => {
 				</div>
 				<img
 					src="/assets/alizeh-portrait.jpg"
-					className="mt-14 aspect-square w-full max-w-64 rounded-full object-cover object-[50%_22%]"
+					className="mt-14 aspect-square w-full max-w-64 rounded-full object-cover"
 					alt="Alizeh smiling, leaning on a teal cushion in front of a wooden wall"
 				/>
 			</div>
