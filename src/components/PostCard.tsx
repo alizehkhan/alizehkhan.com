@@ -1,60 +1,38 @@
 import { format } from 'date-fns'
-import { useMediaQuery } from 'react-responsive'
 import { Link } from 'react-router-dom'
 
 import { Post } from '../utils/types'
 import { showDate } from '../utils/utils'
 
-export const PostCard = ({
-	link,
-	image,
-	title,
-	description,
-	labels,
-	date,
-}: Post) => {
-	const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 880px)' })
-
+export const PostCard = ({ link, image, title, description, date }: Post) => {
 	return (
-		<>
-			<article>
-				<Link
-					to={link}
-					className="flex min-h-[140px] max-w-3xl items-center p-4 transition-all"
-				>
-					{isTabletOrDesktop && (
-						<img
-							className="mr-6 h-20 w-32 shrink-0 object-contain"
-							src={image}
-							alt=""
-						/>
+		<article>
+			<Link
+				to={link}
+				className="group flex items-start gap-8 py-10 md:gap-12 md:py-12"
+			>
+				<div className="min-w-0 flex-1">
+					{date && (
+						<p
+							title={`${format(date, 'MMM d, yyyy')}`}
+							className="mb-2 text-[0.8em] tracking-[0.01em] text-neutral-600"
+						>
+							{showDate(date)}
+						</p>
 					)}
-					<div>
-						{date && (
-							<p
-								title={`${format(date, 'MMM d, yyyy')}`}
-								className="mb-2 text-sm opacity-90"
-							>
-								{showDate(date)}
-							</p>
-						)}
-						<p className="font-serif text-2xl">{title}</p>
-						<p className="mt-2 text-lg opacity-90">{description}</p>
-						{labels && (
-							<div className="mt-2 flex gap-1">
-								{labels.map((label, i) => (
-									<span
-										key={i}
-										className="bg-grey-200 inline-block rounded-full px-3 py-1 text-sm"
-									>
-										{`#${label}`}
-									</span>
-								))}
-							</div>
-						)}
-					</div>
-				</Link>
-			</article>
-		</>
+					<p className="font-heading text-[1.5rem] leading-[1.2] font-bold md:text-[1.875rem]">
+						<span className="highlight">{title}</span>
+					</p>
+					<p className="mt-3 text-[0.92em] leading-[1.6] text-neutral-600">
+						{description}
+					</p>
+				</div>
+				<img
+					className="hidden h-28 w-40 shrink-0 object-contain opacity-85 md:block"
+					src={image}
+					alt=""
+				/>
+			</Link>
+		</article>
 	)
 }

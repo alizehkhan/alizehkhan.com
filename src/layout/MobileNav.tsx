@@ -23,7 +23,7 @@ export const MobileNav = ({
 			<ul
 				hidden={!isMobileNavOpen}
 				id="primary-menu"
-				className="ml-8 flex flex-col items-start gap-6 text-2xl"
+				className="font-heading mt-6 flex flex-col items-start gap-6 text-2xl"
 			>
 				{LINKS.map((link, i) => (
 					<li key={i}>

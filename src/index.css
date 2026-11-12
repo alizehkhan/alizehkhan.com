@@ -1,48 +1,89 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400&family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400..900;1,400..900&display=swap')
 layer(base);
 @import 'tailwindcss';
 
 @theme {
 	--font-*: initial;
-	--font-sans: Source Sans Pro, sans-serif;
-	--font-serif: Merriweather, serif;
+	--font-body: 'Inter Tight', system-ui, sans-serif;
+	--font-heading: 'Inter Tight', system-ui, sans-serif;
 	--font-mono: Menlo, Monaco, Andale Mono, Ubuntu Mono, monospace;
 
 	--color-*: initial;
 	--color-transparent: transparent;
-	--color-white: #ffffff;
-	--color-neutral-100: #f4f2ed;
-	--color-neutral-300: #dcd6cb;
-	--color-neutral-500: #928b80;
-	--color-neutral-700: #4e4d49;
-	--color-neutral-800: #403f3c;
-	--color-grey-100: #eceae5;
-	--color-grey-200: #e4e3de;
-	--color-grey-300: #d6d5d0;
-	--color-yellow-300: #fdf6e2;
-	--color-yellow-700: #854714;
-	--color-red-300: #fcefe8;
-	--color-red-700: #811823;
-	--color-blue-300: #e2f4fe;
-	--color-blue-700: #1b437e;
-	--color-green-300: #ecf9e6;
-	--color-green-700: #2e6b34;
+	--color-white: #1d1d1b;
 
-	--shadow-key: inset 0 -2px 0 0 #dcd6cb, inset 0 0 1px 1px #fff,
-		0 1px 2px 1px rgba(78, 77, 73, 0.4);
+	/* Dark page, off-white text. 100 = page, 300 = borders, 600 = secondary text, 700 = text. */
+	--color-neutral-100: #151513;
+	--color-neutral-300: #3a3a35;
+	--color-neutral-500: #8a8a82;
+	--color-neutral-600: #b9b7ac;
+	--color-neutral-700: #efede4;
+	--color-neutral-800: #ffffff;
+	--color-grey-100: #222220;
+	--color-grey-200: #2a2a27;
+	--color-grey-300: #35352f;
+
+	/* Pink marker block and lime links. Both pass AA on the page colour. */
+	--color-highlight: #e896c8;
+	--color-rule: #3a3a35;
+	--color-accent-600: #cdf26b;
+	--color-accent-700: #cdf26b;
+
+	--color-yellow-300: #f7e8c8;
+	--color-yellow-700: #7a5a12;
+	--color-red-300: #f8e2d6;
+	--color-red-700: #9a3f22;
+	--color-blue-300: #e2eaf0;
+	--color-blue-700: #2f5779;
+	--color-green-300: #e8ecd8;
+	--color-green-700: #4f6038;
+
+	--shadow-key: inset 0 -2px 0 0 #3a3a35, inset 0 0 1px 1px #fff,
+		0 1px 2px 1px rgba(0, 0, 0, 0.5);
 }
 
+html {
+	scroll-padding-top: 1rem;
+	-webkit-text-size-adjust: 100%;
+}
+
+/* Body text grows from 19px on phones to 22px on desktop. Everything in prose is sized in em from here. */
 body {
-	@apply bg-neutral-100 text-neutral-700;
+	@apply font-body bg-neutral-100 text-neutral-700;
+	font-size: clamp(1.1875rem, 1.0625rem + 0.4vw, 1.375rem);
+	font-weight: 450;
+	line-height: 1.6;
+	overflow-wrap: break-word;
 	-webkit-font-smoothing: antialiased;
 	font-synthesis: none;
+	font-kerning: normal;
+	text-rendering: optimizeLegibility;
+}
+
+/* Text on a marker block is the page colour. */
+::selection {
+	background: var(--color-highlight);
+	color: var(--color-neutral-100);
 }
 
 h1,
 h2,
 h3,
 h4 {
-	@apply font-serif break-words;
+	@apply font-heading break-words;
+	text-wrap: balance;
+}
+
+h2,
+h3 {
+	font-weight: 800;
+	letter-spacing: -0.02em;
+	word-spacing: 0.04em;
+}
+
+p,
+li {
+	text-wrap: pretty;
 }
 
 /* ------------------------ */
@@ -57,17 +98,122 @@ main {
 	flex: 1;
 }
 
+/* One wide column shared by the header, page and footer. Prose keeps a readable measure inside it. */
 .container {
-	max-width: 1200px !important;
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
+	width: 100%;
+	max-width: 76rem;
+	padding-inline: 1.25rem;
+	margin-inline: auto;
+}
+
+main p,
+main li {
+	max-width: 42rem;
+}
+
+/* Lets tables of data (gear, food) grow wider than the column on small screens. */
+.wide {
+	margin-inline: calc(50% - min(36rem, 50vw - 1.25rem));
+}
+
+/* The headline */
+.page-title {
+	font-weight: 900;
+	letter-spacing: -0.035em;
+	word-spacing: 0.08em;
+	line-height: 0.94;
+	font-size: clamp(3rem, 1rem + 8vw, 8.5rem);
+	margin-bottom: 2rem;
+}
+
+/* The home statement is an h1 but fills the line like a paragraph. */
+.home-lead {
+	max-width: none;
+	font-size: clamp(2.25rem, 0.5rem + 4.4vw, 4.75rem);
+	font-weight: 800;
+	letter-spacing: -0.035em;
+	word-spacing: 0.06em;
+	line-height: 1.08;
+	margin-bottom: 2rem;
+	text-wrap: pretty;
+}
+
+/* Anchored to the bottom and shorter than the line box, so it never covers descenders on the line above. */
+.marker-word {
+	background: linear-gradient(var(--color-highlight), var(--color-highlight)) 0
+		100% / 100% 82% no-repeat;
+	color: var(--color-neutral-100);
+	padding: 0 0.12em;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+/* Plain hairline for dividers. */
+.rule {
+	display: block;
+	height: 0;
+	border: 0;
+	border-top: 1px solid var(--color-rule);
+}
+
+/* A list with hairlines between items only, none above the first or below the last. */
+.divided > :not(:last-child) {
+	border-bottom: 1px solid var(--color-rule);
+}
+
+/* Links: lime and underlined, with the pink marker block on hover */
+.inline-link,
+header nav a {
+	color: var(--color-accent-700);
+	font-weight: 700;
+	text-decoration: underline;
+	text-decoration-thickness: 3px;
+	text-underline-offset: 5px;
+	text-decoration-color: currentColor;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+	transition: background-color 0.25s ease;
+}
+
+.inline-link:hover,
+.inline-link:focus-visible,
+header nav a:hover {
+	background-color: var(--color-highlight);
+	color: var(--color-neutral-100);
+}
+
+header > a:first-child,
+header > div > a:first-child {
+	font-weight: 800;
+	letter-spacing: -0.03em;
+	text-decoration: none;
+}
+
+header nav a.active {
+	background-color: var(--color-highlight);
+	color: var(--color-neutral-100);
+	text-decoration: none;
+	padding: 0 0.3em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.inline-link,
+	header nav a {
+		transition: none;
+	}
 }
 
 pre {
-	padding: 24px;
-	border-radius: 8px;
-	overflow-y: scroll;
+	@apply text-[1.0625rem] leading-relaxed;
+	padding: 1.25rem 1.5rem;
+	border-radius: 0.5rem;
+	overflow-x: auto;
+}
+
+/* Shiki sets its theme background inline; use a near-black darker than the page. */
+.shiki {
+	background-color: #0d0d0c !important;
+	border: 1px solid var(--color-neutral-300);
 }
 
 .scribble {
@@ -82,13 +228,71 @@ pre {
 	}
 }
 
-header a {
-	text-decoration: none;
+@media (prefers-reduced-motion: reduce) {
+	.scribble {
+		animation: none;
+		stroke-dashoffset: 0;
+	}
 }
 
-header a:hover,
-header .active {
-	@apply underline underline-offset-4;
+/* Registered so the marker colours can fade in; without support they simply switch on. */
+@property --marker {
+	syntax: '<color>';
+	inherits: false;
+	initial-value: transparent;
+}
+
+@property --marker-soft {
+	syntax: '<color>';
+	inherits: false;
+	initial-value: transparent;
+}
+
+/* Marker highlight for titles inside links. The span is inline so the marker follows every wrapped line. */
+.highlight {
+	background-image: linear-gradient(
+			179.3deg,
+			transparent 24%,
+			var(--marker) 24%,
+			var(--marker) 93%,
+			transparent 93%
+		),
+		linear-gradient(
+			178.4deg,
+			transparent 9%,
+			var(--marker-soft) 9%,
+			var(--marker-soft) 34%,
+			transparent 34%
+		);
+	border-radius: 0.15em 0.7em 0.25em 0.55em / 0.45em 0.2em 0.5em 0.25em;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+	transition:
+		--marker 0.25s ease,
+		--marker-soft 0.25s ease;
+}
+
+a:hover .highlight,
+a:focus-visible .highlight {
+	--marker: var(--color-highlight);
+	--marker-soft: transparent;
+	color: var(--color-neutral-100);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.highlight {
+		transition: none;
+	}
+}
+
+/* Photos are plain; the line illustrations are dark strokes, so invert them for the dark page. */
+main img:not([src$='.svg']) {
+	border-radius: 0.25rem;
+}
+
+img[src$='.svg'] {
+	filter: invert(1);
+	opacity: 0.8;
 }
 
 blockquote {
@@ -97,12 +301,6 @@ blockquote {
 
 kbd {
 	@apply shadow-key inline-block rounded-md bg-white px-2 font-mono text-lg text-neutral-700;
-}
-
-@media screen and (min-width: 720px) {
-	q::before {
-		@apply absolute -top-[80px] -left-[140px] font-serif text-[240px] font-bold text-neutral-300 content-[open-quote];
-	}
 }
 
 q::before {
@@ -114,7 +312,7 @@ q::after {
 }
 
 *:focus-visible {
-	@apply rounded-sm outline-[3px] outline-offset-4 outline-green-700 transition-all;
+	@apply outline-accent-600 rounded-sm outline-[3px] outline-offset-4 transition-all;
 }
 
 .on-the-trail,

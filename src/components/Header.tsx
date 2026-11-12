@@ -5,11 +5,11 @@ import { LINKS } from '../layout/links'
 import MobileHeader from '../layout/MobileHeader'
 
 export const Header = () => {
-	const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 880px)' })
+	const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 768px)' })
 
 	return isTabletOrDesktop ? (
-		<header className="container my-8 flex items-center justify-between">
-			<Link className="font-serif text-2xl font-bold hover:no-underline" to="/">
+		<header className="container flex items-baseline justify-between py-8">
+			<Link className="font-heading text-2xl leading-none font-bold" to="/">
 				Alizeh Khan
 			</Link>
 			<nav>

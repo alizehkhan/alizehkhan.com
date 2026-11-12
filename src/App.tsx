@@ -12,6 +12,7 @@ import { Home } from './Home'
 import { Footer } from './layout/Footer'
 import { Minimalism } from './minimalism/Minimalism'
 import { ScrollToTop } from './utils/ScrollToTop'
+import { Writing } from './writing/Writing'
 
 const queryClient = new QueryClient()
 
@@ -22,9 +23,10 @@ const App = () => {
 				<BrowserRouter>
 					<ScrollToTop />
 					<Header />
-					<main className="container mx-auto my-16">
+					<main className="container pt-8 pb-24 md:pt-14">
 						<Routes>
 							<Route path="/" element={<Home />} />
+							<Route path="/writing" element={<Writing />} />
 							<Route path="/frontend-design/*" element={<FrontendDesign />} />
 							<Route path="/minimalism/*" element={<Minimalism />} />
 							<Route path="/hiking/*" element={<Hiking />} />

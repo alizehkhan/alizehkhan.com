@@ -43,7 +43,6 @@ export type Post = {
 	description: string
 	link: To
 	image: string
-	labels?: Label[]
 	date?: Date
 }
 
@@ -54,5 +53,3 @@ export type Project = {
 	source?: To
 	image: string
 }
-
-export type Label = 'design-systems' | 'frontend' | 'design' | 'accessibility'

@@ -42,20 +42,24 @@ export const GearList = () => {
 						path="/"
 						element={
 							<>
-								<div className="mb-2 flex items-center gap-2 text-lg">
-									<Link to="/hiking" className="hover:underline">
-										Hiking
+								<div className="mb-3 flex items-center gap-2 text-lg text-neutral-600">
+									<Link
+										to="/writing"
+										className="hover:text-accent-700 hover:underline"
+									>
+										Writing
 									</Link>
 									<IconChevronRight size={16} />
-									<Link to="." className="hover:underline">
+									<Link
+										to="."
+										className="hover:text-accent-700 hover:underline"
+									>
 										Gear
 									</Link>
 								</div>
-								<h1 className="font-serif text-4xl leading-tight font-bold text-neutral-700 md:text-7xl md:leading-tight">
-									My hiking gear
-								</h1>
+								<h1 className="page-title">My hiking gear</h1>
 								<div className="mt-6 space-y-6">
-									<p className="flex items-center gap-2 font-serif">
+									<p className="font-heading flex items-center gap-2">
 										Base weight:
 										<p className="text-2xl font-bold">
 											{new Intl.NumberFormat('en-GB', {
@@ -72,13 +76,13 @@ export const GearList = () => {
 											).map(([category, items]) => (
 												<div
 													key={category}
-													className="rounded-lg border border-neutral-300 bg-white px-4 pt-4"
+													className="wide rounded-lg border border-neutral-300 bg-white px-4 pt-4"
 												>
 													<h2 className="text-xl font-bold">{category}</h2>
 
 													<div className="my-2 flex gap-1 text-neutral-700/80">
 														Total weight:
-														<p className="font-serif font-bold">
+														<p className="font-heading font-bold">
 															{new Intl.NumberFormat('en-GB').format(
 																getTotalWeight(items),
 															)}
@@ -104,7 +108,7 @@ export const GearList = () => {
 																<p className="flex items-center gap-2 text-lg font-bold">
 																	{gearItem.Name}
 																	{gearItem.Condition === 'New' && (
-																		<p className="h-fit w-fit rounded-full bg-yellow-300 px-2 py-1 text-sm font-bold shadow-xs">
+																		<p className="h-fit w-fit rounded-full bg-yellow-300 px-2 py-1 text-sm font-bold text-yellow-700 shadow-xs">
 																			✨ New
 																		</p>
 																	)}
@@ -122,7 +126,7 @@ export const GearList = () => {
 																			gearItem.Weight,
 																		)} g`
 																	) : (
-																		<p className="h-fit w-fit rounded-full bg-blue-300 px-2 py-1 text-sm font-bold shadow-xs">
+																		<p className="h-fit w-fit rounded-full bg-blue-300 px-2 py-1 text-sm font-bold text-blue-700 shadow-xs">
 																			👕 Worn
 																		</p>
 																	)}
@@ -144,7 +148,7 @@ export const GearList = () => {
 										: Array.from({ length: 4 }, (_, i) => (
 												<div
 													key={i}
-													className="h-[400px] w-full animate-pulse rounded-md bg-neutral-300"
+													className="wide h-[400px] animate-pulse rounded-md bg-neutral-300"
 												/>
 											))}
 								</div>
