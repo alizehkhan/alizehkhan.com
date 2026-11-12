@@ -5,6 +5,7 @@ import { Analytics } from '@vercel/analytics/react'
 import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
+import { About } from './About'
 import { Header } from './components/Header'
 import { FrontendDesign } from './frontend-design/FrontendDesign'
 import { Hiking } from './hiking/Hiking'
@@ -27,6 +28,7 @@ const App = () => {
 						<Routes>
 							<Route path="/" element={<Home />} />
 							<Route path="/writing" element={<Writing />} />
+							<Route path="/about" element={<About />} />
 							<Route path="/frontend-design/*" element={<FrontendDesign />} />
 							<Route path="/minimalism/*" element={<Minimalism />} />
 							<Route path="/hiking/*" element={<Hiking />} />
