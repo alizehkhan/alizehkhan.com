@@ -17,7 +17,7 @@ export const Code = ({ children }: { children: any }) => {
 
 	codeToHtml(code, {
 		lang: language,
-		theme: 'one-dark-pro',
+		theme: 'github-light',
 		transformers: [transformerNotationDiff(), transformerNotationHighlight()],
 	}).then(setHtml)
 

@@ -10,24 +10,25 @@ layer(base);
 
 	--color-*: initial;
 	--color-transparent: transparent;
-	--color-white: #1d1d1b;
+	--color-white: #ffffff;
 
-	/* Dark page, off-white text. 100 = page, 300 = borders, 600 = secondary text, 700 = text. */
-	--color-neutral-100: #151513;
-	--color-neutral-300: #3a3a35;
-	--color-neutral-500: #8a8a82;
-	--color-neutral-600: #b9b7ac;
-	--color-neutral-700: #efede4;
-	--color-neutral-800: #ffffff;
-	--color-grey-100: #222220;
-	--color-grey-200: #2a2a27;
-	--color-grey-300: #35352f;
+	/* Light page, near-black text. 100 = page, 300 = borders, 600 = secondary text, 700 = text. */
+	--color-neutral-100: #f4f1e8;
+	--color-neutral-300: #d3d0c4;
+	--color-neutral-500: #77756c;
+	--color-neutral-600: #55534b;
+	--color-neutral-700: #151513;
+	--color-neutral-800: #000000;
+	--color-grey-100: #ebe8dd;
+	--color-grey-200: #e2dfd3;
+	--color-grey-300: #d8d5c8;
 
-	/* Pink marker block and lime links. Both pass AA on the page colour. */
-	--color-highlight: #e896c8;
-	--color-rule: #3a3a35;
-	--color-accent-600: #cdf26b;
-	--color-accent-700: #cdf26b;
+	/* Yellow highlighter block and burnt orange links. Both pass AA on the page colour. */
+	--color-highlight: #ffe14d;
+	--color-rule: #d3d0c4;
+	--color-ink: #151513;
+	--color-accent-600: #a83e0c;
+	--color-accent-700: #a83e0c;
 
 	--color-yellow-300: #f7e8c8;
 	--color-yellow-700: #7a5a12;
@@ -38,8 +39,8 @@ layer(base);
 	--color-green-300: #e8ecd8;
 	--color-green-700: #4f6038;
 
-	--shadow-key: inset 0 -2px 0 0 #3a3a35, inset 0 0 1px 1px #fff,
-		0 1px 2px 1px rgba(0, 0, 0, 0.5);
+	--shadow-key: inset 0 -2px 0 0 #d3d0c4, inset 0 0 1px 1px #fff,
+		0 1px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 html {
@@ -60,10 +61,10 @@ body {
 	text-rendering: optimizeLegibility;
 }
 
-/* Text on a marker block is the page colour. */
+/* Text on a marker block is the ink colour. */
 ::selection {
 	background: var(--color-highlight);
-	color: var(--color-neutral-100);
+	color: var(--color-ink);
 }
 
 h1,
@@ -141,7 +142,7 @@ main li {
 /* A solid marker block that reaches a little above and below the text. */
 .marker-word {
 	background-color: var(--color-highlight);
-	color: var(--color-neutral-100);
+	color: var(--color-ink);
 	padding: 0.14em 0.2em;
 	-webkit-box-decoration-break: clone;
 	box-decoration-break: clone;
@@ -160,7 +161,7 @@ main li {
 	border-bottom: 1px solid var(--color-rule);
 }
 
-/* Links: lime and underlined, with the pink marker block on hover */
+/* Links: burnt orange and underlined, with the yellow highlight on hover */
 .inline-link,
 header nav a {
 	color: var(--color-accent-700);
@@ -178,7 +179,7 @@ header nav a {
 .inline-link:focus-visible,
 header nav a:hover {
 	background-color: var(--color-highlight);
-	color: var(--color-neutral-100);
+	color: var(--color-ink);
 }
 
 header > a:first-child,
@@ -190,7 +191,7 @@ header > div > a:first-child {
 
 header nav a.active {
 	background-color: var(--color-highlight);
-	color: var(--color-neutral-100);
+	color: var(--color-ink);
 	text-decoration: none;
 	padding: 0 0.3em;
 }
@@ -209,9 +210,9 @@ pre {
 	overflow-x: auto;
 }
 
-/* Shiki sets its theme background inline; use a near-black darker than the page. */
+/* Shiki sets its theme background inline; use a slightly darker shade of the page. */
 .shiki {
-	background-color: #0d0d0c !important;
+	background-color: var(--color-grey-100) !important;
 	border: 1px solid var(--color-neutral-300);
 }
 
@@ -275,19 +276,13 @@ a:hover .highlight,
 a:focus-visible .highlight {
 	--marker: var(--color-highlight);
 	--marker-soft: transparent;
-	color: var(--color-neutral-100);
+	color: var(--color-ink);
 }
 
 @media (prefers-reduced-motion: reduce) {
 	.highlight {
 		transition: none;
 	}
-}
-
-/* The line illustrations are dark strokes, so invert them for the dark page. */
-img[src$='.svg'] {
-	filter: invert(1);
-	opacity: 0.8;
 }
 
 blockquote {
